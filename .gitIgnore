@@ -1,2 +1,5 @@
 /node_modules
 .env
+/src/routes/oauth.js
+/src/routes/request.js
+/dummy.js
