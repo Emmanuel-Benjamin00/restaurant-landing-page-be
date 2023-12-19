@@ -17,7 +17,8 @@ const userSchema = new mongoose.Schema({
     password:{type:String,required:[true,"Password is required"]},
     role:{type:String,default:'user'},
     address: { type: [String], default: [] }, 
-    createdAt:{type:Date, default:Date.now()}
+    createdAt:{type:Date, default:Date.now()},
+    randomString:{type:String}
 },{
     collection:'users',
     versionKey:false

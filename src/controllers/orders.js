@@ -2,17 +2,17 @@ import orderModel from "../models/orders.js";
 
 const orderedFoods = async (req, res) => {
     try {
-        const {foodId,foodOrdered,foodImg,price,address}=req.body
+        const { foodId, foodOrdered, price, address } = req.body
         await orderModel.create({
             foodId,
             foodOrdered,
-            foodImg,
             price,
             address,
-            createdBy: req.headers.userId
+            OrderedCustomerId: req.headers.userId,
+            OrderedCustomerName: req.headers.userName
         })
         res.status(201).send({
-            message: "Order entered payment stage Successfully"
+            message: "Order Placed"
         })
     } catch (error) {
         res.status(500).send({
@@ -24,7 +24,7 @@ const orderedFoods = async (req, res) => {
 
 const getorderedfood = async (req, res) => {
     try {
-        let food = await orderModel.find({ status: "pending" }).sort({ createdAt: 1 })
+        let food = await orderModel.find()
         res.status(200).send({
             message: "Foods Fetched Successfully",
             food
@@ -37,7 +37,34 @@ const getorderedfood = async (req, res) => {
     }
 }
 
+const updateOrderedfood = async (req, res) => {
+    try {
+        const orderedId = req.body.orderId
+        const selectedOrderedID = await orderModel.findById(orderedId)
+        const { status } = req.body
+
+        if (orderedId) {
+            selectedOrderedID.status = status ? status : selectedOrderedID.status
+            selectedOrderedID.OrderedCustomerId= req.headers.userId
+            selectedOrderedID.OrderedCustomerName= req.headers.userName
+        }
+
+        await selectedOrderedID.save()
+
+        res.status(200).send({
+            data: selectedOrderedID
+        })
+
+    } catch (error) {
+        res.status(500).send({
+            message: "Internal Server Error",
+            error: error.message
+        })
+    }
+}
+
 export default {
     orderedFoods,
-    getorderedfood
+    getorderedfood,
+    updateOrderedfood
 }

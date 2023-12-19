@@ -8,6 +8,6 @@ router.post('/login',UserController.login)
 router.post('/forgotPassword',UserController.forgotPassword)
 router.put('/resetPassword',UserController.resetPassword)
 router.put('/addAddress',Auth.validate,UserController.addAddress)
-router.get('/getUsers',Auth.validate,UserController.getUsers)
+router.get('/getUsers',UserController.getUsers)
 
 export default router   
