@@ -156,11 +156,143 @@ const deleteFood = async(req,res) =>{
     }
 }
 
+const getFoodsfor30min = async (req, res) => {
+    try {
+        let foods = await foodModel.find({webPageSHowFoods:"30 Min Delivery"})
+        res.status(200).send({
+            message:"Foods Fetched",
+            data:foods.length,
+            foods
+        })
+    } catch (error) {
+        res.status(500).send({
+            message: "Internal Server Error",
+            error: error.message
+        })
+    }
+}
+
+const getFoodsforPopularItems = async (req, res) => {
+    try {
+        let foods = await foodModel.find({webPageSHowFoods:"Popular Items"})
+        res.status(200).send({
+            message:"Foods Fetched",
+            data:foods.length,
+            foods
+        })
+    } catch (error) {
+        res.status(500).send({
+            message: "Internal Server Error",
+            error: error.message
+        })
+    }
+}
+
+const getTiffen = async (req, res) => {
+    try {
+        let foods = await foodModel.find({category:"Tiffen"})
+        res.status(200).send({
+            message:"Foods Fetched",
+            data:foods.length,
+            foods
+        })
+    } catch (error) {
+        res.status(500).send({
+            message: "Internal Server Error",
+            error: error.message
+        })
+    }
+}
+
+const getRice = async (req, res) => {
+    try {
+        let foods = await foodModel.find({category:"Rice"})
+        res.status(200).send({
+            message:"Foods Fetched",
+            data:foods.length,
+            foods
+        })
+    } catch (error) {
+        res.status(500).send({
+            message: "Internal Server Error",
+            error: error.message
+        })
+    }
+}
+const getEveCrk = async (req, res) => {
+    try {
+        let foods = await foodModel.find({category:"Evenings Crackers"})
+        res.status(200).send({
+            message:"Foods Fetched",
+            data:foods.length,
+            foods
+        })
+    } catch (error) {
+        res.status(500).send({
+            message: "Internal Server Error",
+            error: error.message
+        })
+    }
+}
+const getSweet = async (req, res) => {
+    try {
+        let foods = await foodModel.find({category:"Sweet"})
+        res.status(200).send({
+            message:"Foods Fetched",
+            data:foods.length,
+            foods
+        })
+    } catch (error) {
+        res.status(500).send({
+            message: "Internal Server Error",
+            error: error.message
+        })
+    }
+}
+const getKaaram = async (req, res) => {
+    try {
+        let foods = await foodModel.find({category:"Kaaram"})
+        res.status(200).send({
+            message:"Foods Fetched",
+            data:foods.length,
+            foods
+        })
+    } catch (error) {
+        res.status(500).send({
+            message: "Internal Server Error",
+            error: error.message
+        })
+    }
+}
+const getCools = async (req, res) => {
+    try {
+        let foods = await foodModel.find({category:"Cool Drinks"})
+        res.status(200).send({
+            message:"Foods Fetched",
+            data:foods.length,
+            foods
+        })
+    } catch (error) {
+        res.status(500).send({
+            message: "Internal Server Error",
+            error: error.message
+        })
+    }
+}
+
 
 export default {
     getAllFoods,
+    getFoodsfor30min,
     createFood,
     editFood,
     getFoodById,
-    deleteFood
+    deleteFood,
+    getFoodsforPopularItems,
+    getTiffen,
+    getRice,
+    getEveCrk,
+    getSweet,
+    getKaaram,
+    getCools
 }
