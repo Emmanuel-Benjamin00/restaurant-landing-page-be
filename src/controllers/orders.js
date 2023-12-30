@@ -24,7 +24,7 @@ const orderedFoods = async (req, res) => {
 
 const getorderedfood = async (req, res) => {
     try {
-        let food = await orderModel.find()
+        let food = await orderModel.find().sort({createdAt:-1})
         res.status(200).send({
             message: "Foods Fetched Successfully",
             food
